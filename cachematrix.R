@@ -1,5 +1,8 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Written By: Kunj Kothari
+## Date: Jan 22,2015
+
+## This function finds the inverse of a given matrix. Since, finding inverse of a matrix is computationally intensive procedure,
+## therefore, we cache this inverse matrix. And when again this inverse of matrix is required, then the cached result is produced.
 
 ## Write a short comment describing this function
 
@@ -20,4 +23,13 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
+        inv <<- x$getinv()
+        if(!is.null(inv)){
+                message("Getting Cached Data")
+                return(inv)
+        }
+        data <- x$get()
+        inv <- solve(data,...)
+        x$setinv(inv)
+        return(inv)
 }
